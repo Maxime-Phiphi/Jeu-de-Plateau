@@ -77,7 +77,6 @@ public class VueControleur extends Application {
 				}
 			}
 		});
-
 		// on efface affichage lors du clic
 		affichage.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -113,7 +112,6 @@ public class VueControleur extends Application {
 			}
 
 		});
-
 
 		gPane.setGridLinesVisible(true);
 

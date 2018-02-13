@@ -1,25 +1,27 @@
 package mvc.model;
 
-import mvc.Modele;
-import javafx.scene.paint.Color;
 
-public class Grille extends Modele{
+import java.util.Observable;
+
+
+
+public class Grille extends Observable{
 	
 	private int largeur;
 	private int hauteur;
-	private Case[][] tabCases;  
+	private int[][] tabCases;  
 	
 	public Grille(int h, int l) {
 		this.largeur = l; 
 		this.hauteur = h;
-		tabCases = new Case[h][l];
+		tabCases = new int[h][l];
 		initialiserTabCases();
 	}
 	
 	public void initialiserTabCases() {
 		for(int i=0;i<largeur;i++) {
 			for(int j=0;j<hauteur;j++) {
-				tabCases[j][i]=new Case(Color.BLACK);
+				tabCases[j][i]=0;
 			}
 		}
 	}
@@ -29,12 +31,12 @@ public class Grille extends Modele{
         notifyObservers();
 	}
 	
-	public void changeCase(int x, int y, Color c) {
-		tabCases[x][y].setFill(c);
+	public void changeCase(int x, int y, int n) {
+		tabCases[x][y]=n;
 		updateGrille();
 	}
 	
-	public Case getCase(int x, int y) {
+	public int getCase(int x, int y) {
 		return tabCases[x][y];
 	}
 }
