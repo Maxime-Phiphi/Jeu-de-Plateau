@@ -15,4 +15,6 @@ public abstract class Piece {
 
 	public Piece (){}
 
+	public abstract void rotation();
+
 }
