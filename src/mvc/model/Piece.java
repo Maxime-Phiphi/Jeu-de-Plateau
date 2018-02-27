@@ -4,13 +4,13 @@ public abstract class Piece {
 	
 	protected String nom; 
 	protected int[][] tabPiece;
-	protected String couleur; 
+	protected int identifiant;
 	protected int centreGrav; 
 	
-	public Piece(String nom, int[][] tabPiece, String couleur, int centreGrav) {
+	public Piece(String nom, int[][] tabPiece, int identifiant, int centreGrav) {
 		this.nom = nom; 
 		this.tabPiece = tabPiece;
-		this.couleur = couleur;
+		this.identifiant = identifiant;
 		this.centreGrav = centreGrav;
 		
 	}
