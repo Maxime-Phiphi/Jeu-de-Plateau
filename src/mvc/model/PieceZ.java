@@ -4,7 +4,7 @@ public class PieceZ extends Piece{
     public PieceZ() {
     	identifiant = 6;
     	int id = identifiant;
-    	etat = 1; 
+  
     	tabPiece = new int[][]{
     		{0,0,0},
     		{id,id,0},
@@ -16,7 +16,18 @@ public class PieceZ extends Piece{
 
 	@Override
 	public void rotation() {
-		
+		switch(etat) {
+		case 1: 
+			//if rotation pas possible break
+			//else case ++ et rotation
+			break;
+		case 2:
+			break;
+		case 3: 
+			break;
+		case 4:
+			break;
+		}
 		
 	}
 }
