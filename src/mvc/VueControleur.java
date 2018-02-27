@@ -36,44 +36,41 @@ import mvc.model.Grille;
 public class VueControleur extends Application {
 
 	// modèle : ce qui réalise le calcule de l'expression
-	Modele m;
-	// affiche la saisie et le résultat
-	Text affichage;
-
-	Grille grille = new Grille(10,10);
-
+	Grille g;
 
 	@Override
 	public void start(Stage primaryStage) {
-
 		// initialisation du modèle que l'on souhaite utiliser
-		m = new Modele();
+		int column = 10;
+		int row = 10;
+		Grille grille = new Grille(column,row);
 
 		// gestion du placement (permet de palcer le champ Text affichage en haut, et GridPane gPane au centre)
+		// Faudra le changer pour avoir la grille au centre et un espace pour afficher les pieces à droite
 		BorderPane border = new BorderPane();
 
 		// permet de placer les diffrents boutons dans une grille
 		GridPane gPane = new GridPane();
 
-		int column = 0;
-		int row = 0;
 
 
-
-		affichage = new Text("");
-		affichage.setFont(Font.font ("Verdana", 20));
-		affichage.setFill(Color.RED);
-		border.setTop(affichage);
+		Rectangle r = new Rectangle();
+		for (int i = 0; i <column ; i++) {
+			for (int j = 0; j <row ; j++) {
+				gPane.add(r, i, j);
+			}
+		}
+		border.setLeft(gPane);
 
 		// la vue observe les "update" du modèle, et réalise les mises à jour graphiques
 		grille.addObserver(new Observer() {
 
 			@Override
 			public void update(Observable o, Object arg) {
-				if (!m.getErr()) {
+				if (!g.getErr()) {
 					
 				} else {
-					affichage.setText("Err");
+
 				}
 			}
 		});
