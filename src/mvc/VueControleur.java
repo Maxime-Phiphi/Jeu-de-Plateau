@@ -32,6 +32,7 @@ import mvc.model.Grille;
 
 public class VueControleur extends Application {
 
+<<<<<<< HEAD
 
 
 	Grille grille = new Grille(10,10);
@@ -41,27 +42,54 @@ public class VueControleur extends Application {
 	public void start(Stage primaryStage) {
 		
 		
+=======
+	// modèle : ce qui réalise le calcule de l'expression
+	Grille g;
+
+	@Override
+	public void start(Stage primaryStage) {
+		// initialisation du modèle que l'on souhaite utiliser
+		int column = 10;
+		int row = 10;
+		Grille grille = new Grille(column,row);
+>>>>>>> eb60c735a5995fa88c3aa61c3ec32f6c18777849
 
 		// gestion du placement (permet de palcer le champ Text affichage en haut, et GridPane gPane au centre)
+		// Faudra le changer pour avoir la grille au centre et un espace pour afficher les pieces à droite
 		BorderPane border = new BorderPane();
 
 		// permet de placer les diffrents boutons dans une grille
 		GridPane gPane = new GridPane();
 
-		int column = 0;
-		int row = 0;
 
 
-
+<<<<<<< HEAD
 	
+=======
+		Rectangle r = new Rectangle();
+		for (int i = 0; i <column ; i++) {
+			for (int j = 0; j <row ; j++) {
+				gPane.add(r, i, j);
+			}
+		}
+		border.setLeft(gPane);
+>>>>>>> eb60c735a5995fa88c3aa61c3ec32f6c18777849
 
 		// la vue observe les "update" du modèle, et réalise les mises à jour graphiques
 		grille.addObserver(new Observer() {
 
 			@Override
 			public void update(Observable o, Object arg) {
+<<<<<<< HEAD
 				updateColor();
 				
+=======
+				if (!g.getErr()) {
+					
+				} else {
+
+				}
+>>>>>>> eb60c735a5995fa88c3aa61c3ec32f6c18777849
 			}
 		});
 
