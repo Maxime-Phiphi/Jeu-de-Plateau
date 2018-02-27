@@ -2,16 +2,11 @@ package mvc.model;
 
 public abstract class Piece {
 	
-<<<<<<< HEAD
-	 
-	protected int[][] tabPiece;
-	protected int identifiant;
-	protected int[] centreGrav; 
-=======
+
 	protected int[][] tabPiece;
 	protected int identifiant;
 	protected int[] centreGrav;
->>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
+
 	
 	public Piece(int[][] tabPiece, int identifiant, int[] centreGrav) {
 		this.tabPiece = tabPiece;
@@ -49,8 +44,6 @@ public abstract class Piece {
 	public void setCentreGrav(int[] centreGrav) {
 		this.centreGrav = centreGrav;
 	}
-
-	public Piece (){}
 
 	public abstract void rotation();
 
