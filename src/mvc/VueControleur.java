@@ -35,8 +35,8 @@ public class VueControleur extends Application {
 
 
 
-	Rectangle[][] tabRect = new Rectangle[10][10];
-	Grille g;
+	private Rectangle[][] tabRect = new Rectangle[10][10];
+	private Grille g;
 
 	@Override
 	public void start(Stage primaryStage) {
