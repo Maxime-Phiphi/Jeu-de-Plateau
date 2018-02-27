@@ -10,8 +10,13 @@ public class Grille extends Observable{
 	private int largeur;
 	private int hauteur;
 	private int[][] tabCases;  
+<<<<<<< HEAD
 	boolean err = false;
 
+=======
+	
+	
+>>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
 	public Grille(int h, int l) {
 		this.largeur = l; 
 		this.hauteur = h;
@@ -50,5 +55,9 @@ public class Grille extends Observable{
 		return true; 
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
 }
