@@ -10,7 +10,7 @@ public class Grille extends Observable{
 	private int largeur;
 	private int hauteur;
 	private int[][] tabCases;  
-	
+	boolean err = false;
 	
 	public Grille(int h, int l) {
 		this.largeur = l; 
@@ -40,6 +40,10 @@ public class Grille extends Observable{
 	public int getCase(int x, int y) {
 		return tabCases[x][y];
 	}
+	
+	   public boolean getErr() {
+	        return err;
+	    }
 	
 	
 }
