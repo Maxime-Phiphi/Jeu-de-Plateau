@@ -53,31 +53,26 @@ public class Grille extends Observable{
 			case 1 :
 				Piece pieceI = new PieceI();
 				return pieceI;
-				break;
-			case 2 :
+            case 2 :
 				Piece pieceO = new PieceO();
 				return pieceO;
-			break;
 			case 3 :
 				Piece pieceT = new PieceT();
 				return pieceT;
-			break;
 			case 4 :
 				Piece pieceL = new PieceL();
 				return pieceL;
-			break;
 			case 5 :
 				Piece pieceJ = new PieceJ();
 				return pieceJ;
-				break;
 			case 6 :
 				Piece pieceZ = new PieceZ();
 				return pieceZ;
-				break;
 			case 7 :
 				Piece pieceS = new PieceS();
 				return pieceS;
-				break;
+			default:
+				return new PieceI();
 		}
 	}
 
