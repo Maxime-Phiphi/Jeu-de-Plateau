@@ -13,15 +13,9 @@ import mvc.model.Grille;
 public class VueControleur extends Application {
 
 
-
-
-<<<<<<< HEAD
 	private Rectangle[][] tabRect = new Rectangle[10][10];
 	private Grille g;
-=======
-    private Rectangle[][] tabRect = new Rectangle[10][10];
-    private Grille g;
->>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
+
 
     @Override
     public void start(Stage primaryStage) {

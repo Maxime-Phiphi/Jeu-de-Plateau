@@ -2,7 +2,7 @@ package mvc.model;
 
 
 import java.util.Observable;
-
+import java.util.Random;
 
 
 public class Grille extends Observable{
@@ -10,13 +10,7 @@ public class Grille extends Observable{
 	private int largeur;
 	private int hauteur;
 	private int[][] tabCases;  
-<<<<<<< HEAD
-	boolean err = false;
 
-=======
-	
-	
->>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
 	public Grille(int h, int l) {
 		this.largeur = l; 
 		this.hauteur = h;
@@ -46,18 +40,38 @@ public class Grille extends Observable{
 		return tabCases[x][y];
 	}
 
-	public boolean getErr() {
-		return err;
-	}
 
 	public boolean isEmpty(int x, int y) {
 		if(tabCases[x][y]!=0) return false; 
 		return true; 
 	}
-	
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 52bfb841a0c6675ed4302307faab26f4e665901f
+	public void generatePiece(){
+		Random r = new Random();
+		int identifiant = r.nextInt()% (7 + 1);
+		switch (identifiant){
+			case 1 :
+				Piece pieceI = new PieceI();
+				break;
+			case 2 :
+				Piece pieceO = new PieceO();
+				break;
+			case 3 :
+				Piece pieceT = new PieceT();
+				break;
+			case 4 :
+				Piece pieceL = new PieceL();
+				break;
+			case 5 :
+				Piece pieceJ = new PieceJ();
+				break;
+			case 6 :
+				Piece pieceZ = new PieceZ();
+				break;
+			case 7 :
+				Piece pieceS = new PieceS();
+				break;
+		}
+	}
+
 }
