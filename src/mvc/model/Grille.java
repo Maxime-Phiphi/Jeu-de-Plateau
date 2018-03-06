@@ -46,32 +46,43 @@ public class Grille extends Observable{
 		return true; 
 	}
 
-	public void generatePiece(){
+	public Piece generatePiece(){
 		Random r = new Random();
 		int identifiant = r.nextInt()% (7 + 1);
 		switch (identifiant){
 			case 1 :
 				Piece pieceI = new PieceI();
+				return pieceI;
 				break;
 			case 2 :
 				Piece pieceO = new PieceO();
-				break;
+				return pieceO;
+			break;
 			case 3 :
 				Piece pieceT = new PieceT();
-				break;
+				return pieceT;
+			break;
 			case 4 :
 				Piece pieceL = new PieceL();
-				break;
+				return pieceL;
+			break;
 			case 5 :
 				Piece pieceJ = new PieceJ();
+				return pieceJ;
 				break;
 			case 6 :
 				Piece pieceZ = new PieceZ();
+				return pieceZ;
 				break;
 			case 7 :
 				Piece pieceS = new PieceS();
+				return pieceS;
 				break;
 		}
+	}
+
+	public void mouvement() {
+
 	}
 
 }
