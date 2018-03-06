@@ -8,6 +8,12 @@ public class PieceJ extends Piece {
 
     public PieceJ(){
         identifiant = 5;
-        centreGrav = []
-    };
+    }
+
+    @Override
+    public void rotation() {
+
+    }
+
+    ;
 }
