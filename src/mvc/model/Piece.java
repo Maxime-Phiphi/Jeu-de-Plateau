@@ -6,6 +6,7 @@ public abstract class Piece {
 	protected int[][] tabPiece;
 	protected int identifiant;
 	protected int[] centreGrav;
+	protected int etat=1;
 
 	
 	public Piece(int[][] tabPiece, int identifiant, int[] centreGrav) {
