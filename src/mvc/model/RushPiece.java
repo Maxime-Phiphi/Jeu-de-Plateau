@@ -48,5 +48,8 @@ public class RushPiece {
     public int getId() {
         return id;
     }
+    public String getType() {
+    	return type; 
+    }
 }
 
