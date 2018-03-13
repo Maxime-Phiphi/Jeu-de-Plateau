@@ -16,7 +16,7 @@ public class RushPiece {
         this.x = x;
         this.y = y;
         this.sens = sens;
-        if (type=="C"){
+        if (type=="V"){
             int[] tabPiece = {id, id};
         }
         else {
