@@ -1,6 +1,7 @@
 package mvc.model;
 
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
@@ -9,7 +10,8 @@ public class Grille extends Observable{
 
 	private int largeur;
 	private int hauteur;
-	private int[][] tabCases;  
+	private int[][] tabCases;
+	private ArrayList<RushPiece> listPiece;
 
 	public Grille(int h, int l) {
 		this.largeur = l; 
@@ -79,5 +81,36 @@ public class Grille extends Observable{
 	public void mouvement(Piece piece) {
 
 	}
+	public void avancer(RushPiece piece, int n){
 
+		if (piece.getSens() =='H'){
+			int x =piece.getX();
+			piece.setX(x+n);
+		}
+		else{
+		    int y = piece.getY();
+		    piece.setY(y+n);
+        }
+	}
+
+    public void reculer(RushPiece piece, int n){
+        if (piece.getSens() =='H'){
+            int x =piece.getX();
+            piece.setX(x-n);
+        }
+        else{
+            int y = piece.getY();
+            piece.setY(y-n);
+        }
+    }
+
+    public RushPiece getPieceAt (int x, int y){
+
+        for (RushPiece piece : listPiece) {
+            if (tabCases[x][y] == piece.getId()){
+                return piece;
+            }
+        }
+       return null;
+    }
 }
