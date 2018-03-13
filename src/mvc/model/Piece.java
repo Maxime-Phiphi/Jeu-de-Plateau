@@ -7,12 +7,16 @@ public abstract class Piece {
 	protected int identifiant;
 	protected int[] centreGrav;
 	protected int etat=1;
+	protected int x;
+	protected int y;
 
 	
-	public Piece(int[][] tabPiece, int identifiant, int[] centreGrav) {
+	public Piece(int[][] tabPiece, int identifiant, int[] centreGrav, int x, int y) {
 		this.tabPiece = tabPiece;
 		this.identifiant = identifiant;
 		this.centreGrav = centreGrav;
+		this.x = x;
+		this.y = y;
 		
 	}
 	

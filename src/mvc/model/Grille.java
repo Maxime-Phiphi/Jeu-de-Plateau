@@ -76,7 +76,7 @@ public class Grille extends Observable{
 		}
 	}
 
-	public void mouvement() {
+	public void mouvement(Piece piece) {
 
 	}
 
