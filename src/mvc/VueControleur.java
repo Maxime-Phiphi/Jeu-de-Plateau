@@ -13,6 +13,9 @@ import mvc.model.Grille;
 public class VueControleur extends Application {
 
 
+
+	int x = 1;
+
 	private Rectangle[][] tabRect = new Rectangle[10][10];
 	private Grille g;
 
@@ -48,11 +51,15 @@ public class VueControleur extends Application {
 
             @Override
             public void handle(MouseEvent event) {
+            	
                 System.out.println("X: " + event.getX() + " Y: " + event.getY());
                 int coordX = (int) (event.getX()/40);
                 int coordY = (int) event.getY()/40;
-                actualiseCase(coordX, coordY, 1);
+                actualiseCase(coordX, coordY, x);
                 updateColor();
+                x=x%7;
+                x++;
+                
             }
 
         });
@@ -84,8 +91,26 @@ public class VueControleur extends Application {
             for(int i=0;i<10;i++) {
                 switch(g.getCase(i, j)) {
                     case 1:
-                        tabRect[i][j].setFill(Color.BURLYWOOD);
+                        tabRect[i][j].setFill(Color.CYAN);
                         break;
+                    case 2: 
+                    	tabRect[i][j].setFill(Color.YELLOW);
+                    	break;
+                    case 3:
+                    	tabRect[i][j].setFill(Color.PURPLE);
+                    	break;
+                    case 4: 
+                    	tabRect[i][j].setFill(Color.ORANGE);
+                    	break;
+                    case 5: 
+                    	tabRect[i][j].setFill(Color.BLUE);
+                    	break;
+                    case 6:
+                    	tabRect[i][j].setFill(Color.RED);
+                    	break;
+                    case 7:
+                    	tabRect[i][j].setFill(Color.LIMEGREEN);
+                    	break;
                 }
             }
         }
