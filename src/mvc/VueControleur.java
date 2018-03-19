@@ -9,62 +9,49 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import mvc.model.Grille;
+import mvc.model.RushPiece;
 
 public class VueControleur extends Application {
 
-
-
-	int x = 1;
-
-	private Rectangle[][] tabRect = new Rectangle[10][10];
-	private Grille g;
+    private Rectangle[][] tabRect = new Rectangle[6][6];
+    private Grille g;
+    private RushPiece currentPiece = null;
+    private int previous;
 
 
     @Override
     public void start(Stage primaryStage) {
         // initialisation du modèle que l'on souhaite utiliser
-        int column = 10;
-        int row = 10;
-        g = new Grille(column,row);
+        int column = 6;
+        int row = 6;
+        g = new Grille(column, row);
 
-
-
-        // gestion du placement (permet de palcer le champ Text affichage en haut, et GridPane gPane au centre)
-        // Faudra le changer pour avoir la grille au centre et un espace pour afficher les pieces à droite
         BorderPane border = new BorderPane();
-
-        // permet de placer les diffrents boutons dans une grille
         GridPane gPane = new GridPane();
+        paintGrille(column, row, gPane);
 
 
-        for (int i = 0;i<10;i++) {
-            for(int j = 0; j<10;j++) {
 
-                tabRect[j][i] = new Rectangle(40,40);
-                gPane.add(tabRect[j][i], j, i);
+        gPane.setOnMouseClicked(event->{
+            System.out.println("X: " + event.getX() / 40 + " Y: " + event.getY() / 40);
+            int coordY = (int) (event.getX() / 40);
+            int coordX = (int) event.getY() / 40;
+            //Si y a une piece la ou on clique
+            RushPiece piece = g.getPieceAt(coordX, coordY);
+            previous = piece.getId();
+            piece.setId(500);
+            paintGrille(column, row, gPane);
+            currentPiece = piece;
+            currentPiece.setId(previous);
+            // sinon on fait avancer la piece
 
-            }
-        }
-        // un controleur (EventHandler) par bouton écoute et met à jour le champ affichage
 
-        gPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            actualiseCase(coordX, coordY, x);
 
-            @Override
-            public void handle(MouseEvent event) {
-            	
-                System.out.println("X: " + event.getX() + " Y: " + event.getY());
-                int coordX = (int) (event.getX()/40);
-                int coordY = (int) event.getY()/40;
-                actualiseCase(coordX, coordY, x);
-                updateColor();
-                x=x%7;
-                x++;
-                
-            }
 
         });
 
-        gPane.setGridLinesVisible(true);
+
 
         border.setCenter(gPane);
 
@@ -75,6 +62,65 @@ public class VueControleur extends Application {
         primaryStage.show();
     }
 
+    public Color getColor(int id) {
+        switch (id) {
+            case 100:
+                return Color.RED;
+            case 1:
+                return Color.BLUE;
+            case 2:
+                return Color.OLIVE;
+            case 3:
+                return Color.YELLOW;
+            case 4:
+                return Color.ORANGE;
+            case 5:
+                return Color.PINK;
+            case 6:
+                return Color.VIOLET;
+            case 500:
+                return Color.LIGHTGREEN;
+        }
+        return null;
+    }
+    public void paintGrille(int column, int row, GridPane gPane){
+        for (int i = 0; i < column; i++) {
+            for (int j = 0; j < row; j++) {
+                if (g.getPieceAt(i, j) != null) {
+                    Color color = getColor(g.getPieceAt(i, j).getId());
+                    tabRect[j][i] = new Rectangle(40, 40, color);
+                    tabRect[j][i].setStroke(Color.GRAY);
+                } else {
+                    tabRect[j][i] = new Rectangle(40, 40);
+                    tabRect[j][i].setStroke(Color.GRAY);
+                }
+                gPane.add(tabRect[j][i], j, i);
+            }
+        }
+    }
+
+    public void avancer (int x, int y, RushPiece currentPiece){
+        if (currentPiece.getSens()=='V'){
+            if (currentPiece.getX() > x){
+                int n = currentPiece.getX()-x;
+                g.reculer(currentPiece,n);
+            }
+            else{
+                int n = x - currentPiece.getX();
+                g.avancer(currentPiece,n);
+            }
+        }
+        else {
+            if (currentPiece.getY() > y) {
+                int n = currentPiece.getY()-y;
+                g.reculer(currentPiece,n);
+            }
+            else {
+                int n = y - currentPiece.getY();
+                g.avancer(currentPiece,n);
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -86,34 +132,34 @@ public class VueControleur extends Application {
         g.changeCase(i, j, couleur);
     }
 
-    public void updateColor() {
-        for(int j=0;j<10;j++) {
-            for(int i=0;i<10;i++) {
-                switch(g.getCase(i, j)) {
-                    case 1:
-                        tabRect[i][j].setFill(Color.CYAN);
-                        break;
-                    case 2: 
-                    	tabRect[i][j].setFill(Color.YELLOW);
-                    	break;
-                    case 3:
-                    	tabRect[i][j].setFill(Color.PURPLE);
-                    	break;
-                    case 4: 
-                    	tabRect[i][j].setFill(Color.ORANGE);
-                    	break;
-                    case 5: 
-                    	tabRect[i][j].setFill(Color.BLUE);
-                    	break;
-                    case 6:
-                    	tabRect[i][j].setFill(Color.RED);
-                    	break;
-                    case 7:
-                    	tabRect[i][j].setFill(Color.LIMEGREEN);
-                    	break;
-                }
-            }
-        }
-    }
+//    public void updateColor() {
+//        for(int j=0;j<10;j++) {
+//            for(int i=0;i<10;i++) {
+//                switch(g.getCase(i, j)) {
+//                    case 1:
+//                        tabRect[i][j].setFill(Color.CYAN);
+//                        break;
+//                    case 2:
+//                    	tabRect[i][j].setFill(Color.YELLOW);
+//                    	break;
+//                    case 3:
+//                    	tabRect[i][j].setFill(Color.PURPLE);
+//                    	break;
+//                    case 4:
+//                    	tabRect[i][j].setFill(Color.ORANGE);
+//                    	break;
+//                    case 5:
+//                    	tabRect[i][j].setFill(Color.BLUE);
+//                    	break;
+//                    case 6:
+//                    	tabRect[i][j].setFill(Color.RED);
+//                    	break;
+//                    case 7:
+//                    	tabRect[i][j].setFill(Color.LIMEGREEN);
+//                    	break;
+//                }
+//            }
+//        }
+//    }
 
 }

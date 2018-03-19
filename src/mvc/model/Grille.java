@@ -29,31 +29,31 @@ public class Grille extends Observable{
 		listPiece.add(vR);
 		RushPiece v2 = new RushPiece("V", 2, 4, 4, 'H');
 		listPiece.add(v2);
-		RushPiece v3 = new RushPiece("V", 3, 0, 5, 'V');
+		RushPiece v3 = new RushPiece("V", 3, 0, 4, 'V');
 		listPiece.add(v3);
-		RushPiece c4 = new RushPiece("C", 4, 0, 3, 'V');
+		RushPiece c4 = new RushPiece("C", 4, 0, 1, 'V');
 		listPiece.add(c4);
-		RushPiece c5 = new RushPiece("C", 5, 5, 3, 'V');
+		RushPiece c5 = new RushPiece("C", 5, 3, 1, 'V');
 		listPiece.add(c5);
-		RushPiece c6 = new RushPiece("C", 6, 3, 3, 'V');
+		RushPiece c6 = new RushPiece("C", 6, 5, 0, 'V');
 		listPiece.add(c6);
-		RushPiece c7 = new RushPiece("C", 6, 4, 5, 'H');
+		RushPiece c7 = new RushPiece("C", 6, 2, 5, 'H');
 		listPiece.add(c7);
 	}
 	
 	public void addPiece() {
 		for(RushPiece p : listPiece) {
-			if(p.getSens()=='H') {
+			if(p.getSens()=='V') {
+				tabCases[p.getX()][p.getY()]=p.getId();
+				tabCases[p.getX()+1][p.getY()]=p.getId();
+				if(p.getType()=="C") {
+					tabCases[p.getX()+2][p.getY()]=p.getId();
+				}
+			}else {
 				tabCases[p.getX()][p.getY()]=p.getId();
 				tabCases[p.getX()][p.getY()+1]=p.getId();
 				if(p.getType()=="C") {
 					tabCases[p.getX()][p.getY()+2]=p.getId();
-				}
-			}else {
-				tabCases[p.getX()][p.getY()]=p.getId();
-				tabCases[p.getX()+1][p.getY()+1]=p.getId();
-				if(p.getType()=="C") {
-					tabCases[p.getX()+2][p.getY()]=p.getId();
 				
 				
 			}
@@ -148,7 +148,7 @@ public class Grille extends Observable{
     public RushPiece getPieceAt (int x, int y){
 
         for (RushPiece piece : listPiece) {
-            if (tabCases[x][y] == piece.getId()){
+            if (piece.isInclude(x,y)){
                 return piece;
             }
         }
