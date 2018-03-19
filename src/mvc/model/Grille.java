@@ -60,6 +60,9 @@ public class Grille extends Observable{
 		}
 	}
 	}
+	public void isOccupied(int x, int y) {
+
+    }
 
 	public void initialiserTabCases() {
 		for(int i=0;i<largeur;i++) {
@@ -119,30 +122,26 @@ public class Grille extends Observable{
 		}
 	}
 
-	public void mouvement(Piece piece) {
 
-	}
-	public void avancer(RushPiece piece, int n){
+	public void avancer(RushPiece piece, int n, int c){
 
-		if (piece.getSens() =='H'){
-			int x =piece.getX();
-			piece.setX(x+n);
+		if (piece.getSens() =='V'){
+			int ecartV = c-piece.getX();
+			piece.setX(piece.getX()+n-ecartV);
 		}
 		else{
-		    int y = piece.getY();
-		    piece.setY(y+n);
+		    int ecartH = c - piece.getY();
+		    piece.setY(piece.getY()+n-ecartH);
         }
 	}
 
     public void reculer(RushPiece piece, int n){
-        if (piece.getSens() =='H'){
-            int x =piece.getX();
-            piece.setX(x-n);
+       if (piece.getSens() =='V'){
+            piece.setX(piece.getX()-n);
         }
         else{
-            int y = piece.getY();
-            piece.setY(y-n);
-        }
+		   piece.setY(piece.getY()- n);
+       }
     }
 
     public RushPiece getPieceAt (int x, int y){

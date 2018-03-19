@@ -44,6 +44,33 @@ public class RushPiece {
 
         }
     }
+
+    public int mostClose (int x, int column, int row){
+        int min = 1000;
+        int m=x;
+        if (this.sens == 'V'){
+            for (int i = 0; i <row ; i++) {
+                if (isInclude( i, this.getY())){
+                    m = Math.abs(x - i);
+                }
+                if (m < min){
+                    min = m;
+                }
+            }
+        return Math.abs(x-min);
+        }
+        else {
+            for (int i = 0; i <column ; i++) {
+                if (isInclude( this.getX(), i)){
+                    m = x - i;
+                }
+                if (m < min){
+                    min = m;
+                }
+            }
+            return Math.abs(x-min);
+        }
+    }
 //Getter Setter
 
     public int getX() {

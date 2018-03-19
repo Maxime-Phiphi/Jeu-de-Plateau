@@ -14,6 +14,8 @@ import mvc.model.RushPiece;
 public class VueControleur extends Application {
 
     private Rectangle[][] tabRect = new Rectangle[6][6];
+    private int column = 6;
+    private int row = 6;
     private Grille g;
     private RushPiece currentPiece = null;
     private int previous;
@@ -22,8 +24,6 @@ public class VueControleur extends Application {
     @Override
     public void start(Stage primaryStage) {
         // initialisation du modèle que l'on souhaite utiliser
-        int column = 6;
-        int row = 6;
         g = new Grille(column, row);
 
         BorderPane border = new BorderPane();
@@ -36,18 +36,25 @@ public class VueControleur extends Application {
             System.out.println("X: " + event.getX() / 40 + " Y: " + event.getY() / 40);
             int coordY = (int) (event.getX() / 40);
             int coordX = (int) event.getY() / 40;
-            //Si y a une piece la ou on clique
-            RushPiece piece = g.getPieceAt(coordX, coordY);
-            previous = piece.getId();
-            piece.setId(500);
-            paintGrille(column, row, gPane);
-            currentPiece = piece;
-            currentPiece.setId(previous);
-            // sinon on fait avancer la piece
-
-
-//            actualiseCase(coordX, coordY, x);
-
+            //Si y a pas de piece la ou on clique
+            if (g.getPieceAt(coordX, coordY)== null){
+                if (currentPiece==null) {
+                //Affiche message d'erreur
+                }
+                else{
+                 avancer (coordX, coordY, currentPiece);
+                 paintGrille(column, row, gPane);
+                }
+            }
+            // Si y a une piece la on clique
+            else {
+                RushPiece piece = g.getPieceAt(coordX, coordY);
+                previous = piece.getId();
+                piece.setId(500);
+                paintGrille(column, row, gPane);
+                currentPiece = piece;
+                currentPiece.setId(previous);
+            }
 
         });
 
@@ -107,8 +114,8 @@ public class VueControleur extends Application {
             }
             else{
                 int n = x - currentPiece.getX();
-                g.avancer(currentPiece,n);
-            }
+                int c = currentPiece.mostClose(x, column, row);
+                g.avancer(currentPiece,n,c);            }
         }
         else {
             if (currentPiece.getY() > y) {
@@ -117,7 +124,8 @@ public class VueControleur extends Application {
             }
             else {
                 int n = y - currentPiece.getY();
-                g.avancer(currentPiece,n);
+                int c = currentPiece.mostClose(y,column, row);
+                g.avancer(currentPiece,n, c);
             }
         }
     }
