@@ -1,28 +1,26 @@
-package mvc.model;
+package mvc.rushHour.modele;
 
-import java.util.ArrayList;
+import mvc.libInterpreteurExpr.Piece;
 
-public class RushPiece {
+public class RushPiece extends Piece{
 
-    private int id;
     private String type;
-    private String[] tabPiece;
-    private int x;
-    private int y;
     private char sens;
 
+
     public RushPiece(String type, int id, int y, int x, char sens) {
+
         this.type = type;
-        this.id = id;
-        this.x = x;
-        this.y = y;
+        setId(id);
+        setX(x);
+        setY(y);
         this.sens = sens;
-        if (type=="V"){
-            int[] tabPiece = {id, id};
-        }
-        else {
-            int[] tabPiece = {id, id, id};
-        }
+//        if (type=="V"){
+//            int[] tabPiece = {id, id};
+//        }
+//        else {
+//            int[] tabPiece = {id, id, id};
+//        }
     }
 
     public boolean isInclude (int x, int y){
@@ -71,37 +69,36 @@ public class RushPiece {
             return Math.abs(x-min);
         }
     }
-//Getter Setter
 
-    public int getX() {
-        return x;
+    public void avancer(int n, int c){
+
+        if (this.getSens() =='V'){
+            int ecartV = c-this.getX();
+            this.setX(this.getX()+n-ecartV);
+        }
+        else{
+            int ecartH = c - this.getY();
+            this.setY(this.getY()+n-ecartH);
+        }
     }
 
-    public int getY() {
-        return y;
+    public void reculer(int n){
+        if (this.getSens() =='V'){
+            this.setX(this.getX()-n);
+        }
+        else{
+            this.setY(this.getY()- n);
+        }
     }
+    // Getters Setters
 
-    public void setX(int x) {
-        this.x = x;
-    }
 
-    public void setY(int y) {
-        this.y = y;
+    public String getType() {
+        return type;
     }
 
     public char getSens() {
         return sens;
-    }
-
-    public int getId() {
-        return id;
-    }
-    public String getType() {
-    	return type; 
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
 

@@ -16,6 +16,6 @@
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="calc" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="mvc.VueControleur"  name="calc" />
+  <jfx:javafx-desc width="800" height="600" main-class="mvc.rushHour.RushHourVueControleur" name="calc" />
   <update check="always"/>
 </jnlp>

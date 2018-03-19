@@ -1,22 +1,20 @@
-package mvc;
+package mvc.rushHour;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.shape.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import mvc.model.Grille;
-import mvc.model.RushPiece;
+import mvc.rushHour.modele.RushHourGrille;
+import mvc.rushHour.modele.RushPiece;
 
-public class VueControleur extends Application {
+public class RushHourVueControleur extends Application {
 
     private Rectangle[][] tabRect = new Rectangle[6][6];
     private int column = 6;
     private int row = 6;
-    private Grille g;
+    private RushHourGrille g;
     private RushPiece currentPiece = null;
     private int previous;
 
@@ -24,7 +22,7 @@ public class VueControleur extends Application {
     @Override
     public void start(Stage primaryStage) {
         // initialisation du modèle que l'on souhaite utiliser
-        g = new Grille(column, row);
+        g = new RushHourGrille(column, row);
 
         BorderPane border = new BorderPane();
         GridPane gPane = new GridPane();
@@ -110,22 +108,22 @@ public class VueControleur extends Application {
         if (currentPiece.getSens()=='V'){
             if (currentPiece.getX() > x){
                 int n = currentPiece.getX()-x;
-                g.reculer(currentPiece,n);
+                currentPiece.reculer(n);
             }
             else{
                 int n = x - currentPiece.getX();
                 int c = currentPiece.mostClose(x, column, row);
-                g.avancer(currentPiece,n,c);            }
+                currentPiece.avancer(n,c);            }
         }
         else {
             if (currentPiece.getY() > y) {
                 int n = currentPiece.getY()-y;
-                g.reculer(currentPiece,n);
+                currentPiece.reculer(n);
             }
             else {
                 int n = y - currentPiece.getY();
                 int c = currentPiece.mostClose(y,column, row);
-                g.avancer(currentPiece,n, c);
+                currentPiece.avancer(n, c);
             }
         }
     }
@@ -136,9 +134,9 @@ public class VueControleur extends Application {
         launch(args);
     }
 
-    public void actualiseCase(int i, int j, int couleur) {
-        g.changeCase(i, j, couleur);
-    }
+//    public void actualiseCase(int i, int j, int couleur) {
+//        g.changeCase(i, j, couleur);
+//    }
 
 //    public void updateColor() {
 //        for(int j=0;j<10;j++) {
