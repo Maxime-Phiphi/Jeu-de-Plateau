@@ -106,24 +106,31 @@ public class RushHourVueControleur extends Application {
 
     public void avancer (int x, int y, RushPiece currentPiece){
         if (currentPiece.getSens()=='V'){
-            if (currentPiece.getX() > x){
+            if (currentPiece.getX() > x && y == currentPiece.getY()){
                 int n = currentPiece.getX()-x;
                 currentPiece.reculer(n);
             }
-            else{
+            else if (currentPiece.getX() < x && y == currentPiece.getY()){
                 int n = x - currentPiece.getX();
                 int c = currentPiece.mostClose(x, column, row);
-                currentPiece.avancer(n,c);            }
+                currentPiece.avancer(n,c);
+            }
+            else {
+                //Message d'erreur "tu peux pas bouger la piece ici gros malin"
+            }
         }
         else {
-            if (currentPiece.getY() > y) {
+            if (currentPiece.getY() > y && x == currentPiece.getX()) {
                 int n = currentPiece.getY()-y;
                 currentPiece.reculer(n);
             }
-            else {
+            else if (currentPiece.getY() < y && x == currentPiece.getX()){
                 int n = y - currentPiece.getY();
                 int c = currentPiece.mostClose(y,column, row);
                 currentPiece.avancer(n, c);
+            }
+            else {
+                //Message d'erreur "tu peux pas bouger la piece ici gros malin"
             }
         }
     }

@@ -20,6 +20,8 @@ public abstract class Grille {
             return false;
         }
     }
+
+
     public void initialiserTabCases() {
         for(int i=0;i<largeur;i++) {
             for(int j=0;j<hauteur;j++) {
