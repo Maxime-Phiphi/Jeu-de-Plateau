@@ -151,6 +151,7 @@ public class RushHourVueControleur extends Application {
                 currentPiece.avancer(n,c);
             }
             else {
+            	nbCoups--;
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Erreur!!");
             	alert.setHeaderText("Attention, ne peux pas deplacer la piece ici");
@@ -173,6 +174,7 @@ public class RushHourVueControleur extends Application {
                 currentPiece.avancer(n, c);
             }
             else {
+            	nbCoups--;
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Erreur!!");
             	alert.setHeaderText("Attention, ne peux pas d�placer la pi�ce ici");
