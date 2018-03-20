@@ -1,10 +1,16 @@
 package mvc.rushHour;
+import javax.swing.JOptionPane;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.shape.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import mvc.rushHour.modele.RushHourGrille;
 import mvc.rushHour.modele.RushPiece;
@@ -37,7 +43,15 @@ public class RushHourVueControleur extends Application {
             //Si y a pas de piece la ou on clique
             if (g.getPieceAt(coordX, coordY)== null){
                 if (currentPiece==null) {
-                //Affiche message d'erreur
+                	Alert alert = new Alert(AlertType.INFORMATION);
+                	alert.setTitle("Erreur!!");
+                	alert.setHeaderText("Attention, tu as choisi une case vide");
+                	alert.setContentText("Veuillez choisir une pièce!!!");
+                	alert.showAndWait().ifPresent(rs -> {
+                	    if (rs == ButtonType.OK) {
+                	        System.out.println("Pressed OK.");
+                	    }
+                	});
                 }
                 else{
                  avancer (coordX, coordY, currentPiece);
