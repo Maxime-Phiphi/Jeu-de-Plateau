@@ -2,6 +2,7 @@ package mvc.rushHour;
 import javax.swing.JOptionPane;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -23,6 +24,7 @@ public class RushHourVueControleur extends Application {
     private RushHourGrille g;
     private RushPiece currentPiece = null;
     private int previous;
+    private int nbCoups=0;
 
 
     @Override
@@ -55,7 +57,11 @@ public class RushHourVueControleur extends Application {
                 }
                 else{
                  avancer (coordX, coordY, currentPiece);
+                 nbCoups++;
                  paintGrille(column, row, gPane);
+                 if(g.gagnePartie()) {
+                	finPartie();
+                 }
                 }
             }
             // Si y a une piece la on clique
@@ -116,6 +122,21 @@ public class RushHourVueControleur extends Application {
                 gPane.add(tabRect[j][i], j, i);
             }
         }
+    }
+    
+    public void finPartie() {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setTitle("Bravo!!");
+    	alert.setHeaderText("Tu as gagné la partie ! ");
+    	alert.setContentText("Tu as fini la partie en "+nbCoups+" coups. ");
+    	alert.showAndWait().ifPresent(rs -> {
+    	    if (rs == ButtonType.OK) {
+    	        System.out.println("Pressed OK.");
+    	        Platform.exit();
+    	      
+    	        
+    	    }
+    	});
     }
 
     public void avancer (int x, int y, RushPiece currentPiece){

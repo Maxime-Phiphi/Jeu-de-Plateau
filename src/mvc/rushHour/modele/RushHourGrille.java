@@ -62,6 +62,18 @@ public class RushHourGrille extends Grille{
 		}
 	}
 	}
+	
+	
+	public boolean gagnePartie() {
+		for(RushPiece p: listPiece) {
+			if(p.getId()==100) {
+				if(p.getY()==4) {
+					return true; 
+				}
+			}
+		}
+		return false; 
+	}
 
 
 
