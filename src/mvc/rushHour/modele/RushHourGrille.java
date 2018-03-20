@@ -62,9 +62,10 @@ public class RushHourGrille extends Grille{
 		}
 	}
 	}
-	
-	
-	public boolean gagnePartie() {
+
+
+
+    public boolean gagnePartie() {
 		for(RushPiece p: listPiece) {
 			if(p.getId()==100) {
 				if(p.getY()==4) {
@@ -76,9 +77,7 @@ public class RushHourGrille extends Grille{
 	}
 
 
-
-
-    public RushPiece getPieceAt (int x, int y){
+	public RushPiece getPieceAt (int x, int y){
 
         for (RushPiece piece : listPiece) {
             if (piece.isInclude(x,y)){

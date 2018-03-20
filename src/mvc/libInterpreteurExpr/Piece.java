@@ -19,6 +19,7 @@ public abstract class Piece {
     public abstract void reculer(int n);
 
 
+
 //Getter Setter
 
 

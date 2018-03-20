@@ -1,7 +1,4 @@
 package mvc.libInterpreteurExpr;
-
-import mvc.rushHour.modele.RushPiece;
-
 import java.util.ArrayList;
 
 public abstract class Grille {
@@ -20,6 +17,51 @@ public abstract class Grille {
             return false;
         }
     }
+
+
+
+    public  boolean collision (Piece currentpiece, int x, int y, int row, int column){
+        int xmax =0;
+        int ymax =0;
+        int xmin =0;
+        int ymin =0;
+        // on avance
+        for (int i = x; i < row ; i++) {
+            do {
+                 ymax = i;
+            }
+            while ( !isOccupied(i,y) || currentpiece.isInclude(x, y));
+        }
+
+        for (int j = y; j < column ; j++) {
+            do{
+                 xmax = j;
+            }
+            while ( !isOccupied(x, j)|| currentpiece.isInclude(x, y));
+        }
+        //on recule
+        for (int i = x; i >= 0 ; i--) {
+            do {
+                  ymin = i;
+            }
+            while ( !isOccupied(i,y) || currentpiece.isInclude(x, y));
+        }
+        for (int j = y; j >= 0 ; j--) {
+            do{
+                 xmin = j;
+            }
+            while ( !isOccupied(x, j)|| currentpiece.isInclude(x, y));
+        }
+        if (y > ymax || y < ymin){
+            return false;
+        }
+        else if (x > xmax || x < xmin){
+            return false;
+        }
+
+        return true;
+    }
+
 
 
     public void initialiserTabCases() {

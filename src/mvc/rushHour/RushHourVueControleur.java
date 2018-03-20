@@ -48,7 +48,7 @@ public class RushHourVueControleur extends Application {
                 	Alert alert = new Alert(AlertType.INFORMATION);
                 	alert.setTitle("Erreur!!");
                 	alert.setHeaderText("Attention, tu as choisi une case vide");
-                	alert.setContentText("Veuillez choisir une pièce!!!");
+                	alert.setContentText("Veuillez choisir une piï¿½ce!!!");
                 	alert.showAndWait().ifPresent(rs -> {
                 	    if (rs == ButtonType.OK) {
                 	        System.out.println("Pressed OK.");
@@ -127,7 +127,7 @@ public class RushHourVueControleur extends Application {
     public void finPartie() {
     	Alert alert = new Alert(AlertType.INFORMATION);
     	alert.setTitle("Bravo!!");
-    	alert.setHeaderText("Tu as gagné la partie ! ");
+    	alert.setHeaderText("Tu as gagnï¿½ la partie ! ");
     	alert.setContentText("Tu as fini la partie en "+nbCoups+" coups. ");
     	alert.showAndWait().ifPresent(rs -> {
     	    if (rs == ButtonType.OK) {
@@ -141,11 +141,11 @@ public class RushHourVueControleur extends Application {
 
     public void avancer (int x, int y, RushPiece currentPiece){
         if (currentPiece.getSens()=='V'){
-            if (currentPiece.getX() > x && y == currentPiece.getY()){
+            if (currentPiece.getX() > x && y == currentPiece.getY() && !g.collision(currentPiece, x, y, row, column)){
                 int n = currentPiece.getX()-x;
                 currentPiece.reculer(n);
             }
-            else if (currentPiece.getX() < x && y == currentPiece.getY()){
+            else if (currentPiece.getX() < x && y == currentPiece.getY()&& !g.collision(currentPiece, x, y, row, column)){
                 int n = x - currentPiece.getX();
                 int c = currentPiece.mostClose(x, column, row);
                 currentPiece.avancer(n,c);
@@ -153,7 +153,7 @@ public class RushHourVueControleur extends Application {
             else {
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Erreur!!");
-            	alert.setHeaderText("Attention, ne peux pas déplacer la pièce ici");
+            	alert.setHeaderText("Attention, ne peux pas deplacer la piece ici");
             	alert.setContentText("Veuillez choisir une autre case!!!");
             	alert.showAndWait().ifPresent(rs -> {
             	    if (rs == ButtonType.OK) {
@@ -175,7 +175,7 @@ public class RushHourVueControleur extends Application {
             else {
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Erreur!!");
-            	alert.setHeaderText("Attention, ne peux pas déplacer la pièce ici");
+            	alert.setHeaderText("Attention, ne peux pas dï¿½placer la piï¿½ce ici");
             	alert.setContentText("Veuillez choisir une autre case!!!");
             	alert.showAndWait().ifPresent(rs -> {
             	    if (rs == ButtonType.OK) {
