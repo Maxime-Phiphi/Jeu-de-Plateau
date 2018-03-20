@@ -130,7 +130,15 @@ public class RushHourVueControleur extends Application {
                 currentPiece.avancer(n,c);
             }
             else {
-                //Message d'erreur "tu peux pas bouger la piece ici gros malin"
+            	Alert alert = new Alert(AlertType.INFORMATION);
+            	alert.setTitle("Erreur!!");
+            	alert.setHeaderText("Attention, ne peux pas déplacer la pièce ici");
+            	alert.setContentText("Veuillez choisir une autre case!!!");
+            	alert.showAndWait().ifPresent(rs -> {
+            	    if (rs == ButtonType.OK) {
+            	        System.out.println("Pressed OK.");
+            	    }
+            	});
             }
         }
         else {
@@ -144,7 +152,15 @@ public class RushHourVueControleur extends Application {
                 currentPiece.avancer(n, c);
             }
             else {
-                //Message d'erreur "tu peux pas bouger la piece ici gros malin"
+            	Alert alert = new Alert(AlertType.INFORMATION);
+            	alert.setTitle("Erreur!!");
+            	alert.setHeaderText("Attention, ne peux pas déplacer la pièce ici");
+            	alert.setContentText("Veuillez choisir une autre case!!!");
+            	alert.showAndWait().ifPresent(rs -> {
+            	    if (rs == ButtonType.OK) {
+            	        System.out.println("Pressed OK.");
+            	    }
+            	});
             }
         }
     }
