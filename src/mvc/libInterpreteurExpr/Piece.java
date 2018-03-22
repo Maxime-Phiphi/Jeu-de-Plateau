@@ -14,9 +14,9 @@ public abstract class Piece {
 
     public abstract boolean isInclude (int x, int y);
 
-    public abstract void avancer(int n, int c);
+    public abstract void avancer();
 
-    public abstract void reculer(int n);
+    public abstract void reculer();
 
 
 

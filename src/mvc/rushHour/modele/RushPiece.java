@@ -44,50 +44,59 @@ public class RushPiece extends Piece{
     }
 
     public int mostClose (int x, int column, int row){
-        int min = 1000;
-        int m=x;
-        if (this.sens == 'V'){
-            for (int i = 0; i <row ; i++) {
-                if (isInclude( i, this.getY())){
-                    m = Math.abs(x - i);
-                }
-                if (m < min){
-                    min = m;
+        if ( this.sens == 'V'){
+            if (this.getX() > x){
+                for (int i = x; i < row ; i++) {
+                    if(isInclude(i, this.getY())){
+                        return i;
+                    }
                 }
             }
-        return Math.abs(x-min);
+            else {
+                for (int i = x; i > 0 ; i--) {
+                    if(isInclude(i, this.getY())){
+                        return i;
+                    }
+                }
+            }
+            return this.getX();
         }
         else {
-            for (int i = 0; i <column ; i++) {
-                if (isInclude( this.getX(), i)){
-                    m = x - i;
-                }
-                if (m < min){
-                    min = m;
+            if (this.getY() > x){
+                for (int i = x; i < column ; i++) {
+                    if(isInclude(this.getX(), i)){
+                        return i;
+                    }
                 }
             }
-            return Math.abs(x-min);
+            else {
+                for (int i = x; i > 0 ; i--) {
+                    if(isInclude(this.getX(), i)){
+                        return i;
+                    }
+                }
+            }
+            return this.getY();
+        }
+
+    }
+
+    public void avancer(){
+
+        if (this.getSens() =='V'){
+            this.setX(this.getX()+1);
+        }
+        else{
+            this.setY(this.getY()+1);
         }
     }
 
-    public void avancer(int n, int c){
-
+    public void reculer(){
         if (this.getSens() =='V'){
-            int ecartV = c-this.getX();
-            this.setX(this.getX()+n-ecartV);
+            this.setX(this.getX()-1);
         }
         else{
-            int ecartH = c - this.getY();
-            this.setY(this.getY()+n-ecartH);
-        }
-    }
-
-    public void reculer(int n){
-        if (this.getSens() =='V'){
-            this.setX(this.getX()-n);
-        }
-        else{
-            this.setY(this.getY()- n);
+            this.setY(this.getY()- 1);
         }
     }
     // Getters Setters

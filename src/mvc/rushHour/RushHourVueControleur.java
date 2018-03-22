@@ -141,14 +141,21 @@ public class RushHourVueControleur extends Application {
 
     public void avancer (int x, int y, RushPiece currentPiece){
         if (currentPiece.getSens()=='V'){
-            if (currentPiece.getX() > x && y == currentPiece.getY() && !g.collision(currentPiece, x, y, row, column)){
-                int n = currentPiece.getX()-x;
-                currentPiece.reculer(n);
+            if (currentPiece.getX() > x && y == currentPiece.getY()){
+                int n = currentPiece.mostClose(x, column, row);
+                for (int i = n; i >= x; i--) {
+                    if (!g.collision(i,currentPiece.getY())){
+                        currentPiece.reculer();
+                    }
+                }
             }
-            else if (currentPiece.getX() < x && y == currentPiece.getY()&& !g.collision(currentPiece, x, y, row, column)){
-                int n = x - currentPiece.getX();
-                int c = currentPiece.mostClose(x, column, row);
-                currentPiece.avancer(n,c);
+            else if (currentPiece.getX() < x && y == currentPiece.getY()){
+                int n = currentPiece.mostClose(x, column, row);
+                for (int i = n; i <= x ; i++) {
+                    if (!g.collision(i,currentPiece.getY())){
+                        currentPiece.avancer();
+                    }
+                }
             }
             else {
             	nbCoups--;
@@ -165,13 +172,20 @@ public class RushHourVueControleur extends Application {
         }
         else {
             if (currentPiece.getY() > y && x == currentPiece.getX()) {
-                int n = currentPiece.getY()-y;
-                currentPiece.reculer(n);
+                int n = currentPiece.mostClose(y, column, row);
+                for (int i = n; i > y; i--) {
+                    if (!g.collision(currentPiece.getX(),i)) {
+                        currentPiece.reculer();
+                    }
+                }
             }
             else if (currentPiece.getY() < y && x == currentPiece.getX()){
-                int n = y - currentPiece.getY();
-                int c = currentPiece.mostClose(y,column, row);
-                currentPiece.avancer(n, c);
+                int n = currentPiece.mostClose(y, column, row);
+                for (int i = n; i < y ; i++) {
+                    if (!g.collision(currentPiece.getX(),i)) {
+                        currentPiece.avancer();
+                    }
+                }
             }
             else {
             	nbCoups--;

@@ -23,7 +23,8 @@ public class RushHourGrille extends Grille{
 		initialiserTabCases();
 		addPiece();
 	}
-	
+
+
 	public void initialiserConfigRushHour() {
 		RushPiece v1 = new RushPiece("V", 1, 0, 0, 'H');
 		listPiece.add(v1);
@@ -85,5 +86,13 @@ public class RushHourGrille extends Grille{
             }
         }
        return null;
+    }
+
+    public boolean collision(int x, int y) {
+        return super.collision(x, y, this.getTabCases());
+    }
+
+    public int[][] getTabCases() {
+        return tabCases;
     }
 }
