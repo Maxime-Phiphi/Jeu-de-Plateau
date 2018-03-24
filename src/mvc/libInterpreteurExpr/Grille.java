@@ -10,12 +10,7 @@ public abstract class Grille {
     public abstract void addPiece();
 
     public boolean collision(int x, int y, int[][]tabCases) {
-        if (tabCases[x][y] != 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return tabCases[x][y] != 0;
     }
 
     public void initialiserTabCases() {

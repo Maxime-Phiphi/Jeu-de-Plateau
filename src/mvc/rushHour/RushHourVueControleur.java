@@ -143,16 +143,16 @@ public class RushHourVueControleur extends Application {
         if (currentPiece.getSens()=='V'){
             if (currentPiece.getX() > x && y == currentPiece.getY()){
                 int n = currentPiece.mostClose(x, column, row);
-                for (int i = n; i >= x; i--) {
-                    if (!g.collision(i,currentPiece.getY())){
+                for (int i = n; i > x; i--) {
+                    if (!g.collision(i-1,currentPiece.getY())){
                         currentPiece.reculer();
                     }
                 }
             }
             else if (currentPiece.getX() < x && y == currentPiece.getY()){
                 int n = currentPiece.mostClose(x, column, row);
-                for (int i = n; i <= x ; i++) {
-                    if (!g.collision(i,currentPiece.getY())){
+                for (int i = n; i < x ; i++) {
+                    if (!g.collision(i+1,currentPiece.getY())){
                         currentPiece.avancer();
                     }
                 }
@@ -174,7 +174,7 @@ public class RushHourVueControleur extends Application {
             if (currentPiece.getY() > y && x == currentPiece.getX()) {
                 int n = currentPiece.mostClose(y, column, row);
                 for (int i = n; i > y; i--) {
-                    if (!g.collision(currentPiece.getX(),i)) {
+                    if (!g.collision(currentPiece.getX(),i-1)) {
                         currentPiece.reculer();
                     }
                 }
@@ -182,7 +182,7 @@ public class RushHourVueControleur extends Application {
             else if (currentPiece.getY() < y && x == currentPiece.getX()){
                 int n = currentPiece.mostClose(y, column, row);
                 for (int i = n; i < y ; i++) {
-                    if (!g.collision(currentPiece.getX(),i)) {
+                    if (!g.collision(currentPiece.getX(),i+1)) {
                         currentPiece.avancer();
                     }
                 }
