@@ -57,6 +57,7 @@ public class RushHourVueControleur extends Application {
                 }
                 else{
                  avancer (coordX, coordY, currentPiece);
+//                 g.updateTabCase();
                  nbCoups++;
                  paintGrille(column, row, gPane);
                  if(g.gagnePartie()) {
@@ -147,6 +148,9 @@ public class RushHourVueControleur extends Application {
                     if (!g.collision(i-1,currentPiece.getY())){
                         currentPiece.reculer();
                     }
+                    else {
+                        return;
+                    }
                 }
             }
             else if (currentPiece.getX() < x && y == currentPiece.getY()){
@@ -154,6 +158,9 @@ public class RushHourVueControleur extends Application {
                 for (int i = n; i < x ; i++) {
                     if (!g.collision(i+1,currentPiece.getY())){
                         currentPiece.avancer();
+                    }
+                    else {
+                        return;
                     }
                 }
             }
@@ -177,6 +184,9 @@ public class RushHourVueControleur extends Application {
                     if (!g.collision(currentPiece.getX(),i-1)) {
                         currentPiece.reculer();
                     }
+                    else {
+                        return;
+                    }
                 }
             }
             else if (currentPiece.getY() < y && x == currentPiece.getX()){
@@ -184,6 +194,9 @@ public class RushHourVueControleur extends Application {
                 for (int i = n; i < y ; i++) {
                     if (!g.collision(currentPiece.getX(),i+1)) {
                         currentPiece.avancer();
+                    }
+                    else {
+                        return;
                     }
                 }
             }

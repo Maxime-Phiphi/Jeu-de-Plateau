@@ -1,7 +1,9 @@
 package mvc.libInterpreteurExpr;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public abstract class Grille {
+public abstract class Grille implements Observer {
     private int largeur;
     private int hauteur;
     private int[][] tabCases;
@@ -25,7 +27,7 @@ public abstract class Grille {
 //        setChanged();
 //        notifyObservers();
 //    }
-//
+
 //    public void changeCase(int x, int y, int n) {
 //        tabCases[x][y]=n;
 //        updateGrille();

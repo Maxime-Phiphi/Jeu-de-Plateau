@@ -89,6 +89,8 @@ public class RushPiece extends Piece{
         else{
             this.setY(this.getY()+1);
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void reculer(){
@@ -98,6 +100,8 @@ public class RushPiece extends Piece{
         else{
             this.setY(this.getY()- 1);
         }
+        setChanged();
+        notifyObservers();
     }
     // Getters Setters
 

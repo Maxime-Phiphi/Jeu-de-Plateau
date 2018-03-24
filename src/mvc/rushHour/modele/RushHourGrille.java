@@ -27,23 +27,31 @@ public class RushHourGrille extends Grille{
 
 	public void initialiserConfigRushHour() {
 		RushPiece v1 = new RushPiece("V", 1, 0, 0, 'H');
+		v1.addObserver(this);
 		listPiece.add(v1);
 		RushPiece vR = new RushPiece("V", 100, 1, 2, 'H');
 		listPiece.add(vR);
-		RushPiece v2 = new RushPiece("V", 2, 4, 4, 'H');
+        v1.addObserver(this);
+        RushPiece v2 = new RushPiece("V", 2, 4, 4, 'H');
 		listPiece.add(v2);
-		RushPiece v3 = new RushPiece("V", 3, 0, 4, 'V');
+        v1.addObserver(this);
+        RushPiece v3 = new RushPiece("V", 3, 0, 4, 'V');
 		listPiece.add(v3);
-		RushPiece c4 = new RushPiece("C", 4, 0, 1, 'V');
+        v1.addObserver(this);
+        RushPiece c4 = new RushPiece("C", 4, 0, 1, 'V');
 		listPiece.add(c4);
-		RushPiece c5 = new RushPiece("C", 5, 3, 1, 'V');
+        v1.addObserver(this);
+        RushPiece c5 = new RushPiece("C", 5, 3, 1, 'V');
 		listPiece.add(c5);
-		RushPiece c6 = new RushPiece("C", 6, 5, 0, 'V');
+        v1.addObserver(this);
+        RushPiece c6 = new RushPiece("C", 6, 5, 0, 'V');
 		listPiece.add(c6);
-		RushPiece c7 = new RushPiece("C", 6, 2, 5, 'H');
+        v1.addObserver(this);
+        RushPiece c7 = new RushPiece("C", 6, 2, 5, 'H');
 		listPiece.add(c7);
-	}
-	
+        v1.addObserver(this);
+    }
+
 	public void addPiece() {
 		for(RushPiece p : listPiece) {
 			if(p.getSens()=='V') {
@@ -95,4 +103,17 @@ public class RushHourGrille extends Grille{
     public int[][] getTabCases() {
         return tabCases;
     }
+
+    @Override
+    public void update(Observable obs, Object obj) {
+        System.out.println("caca");
+        if(obs instanceof Piece){
+            initialiserTabCases();
+            for (Piece piece : listPiece) {
+                tabCases[piece.getX()][piece.getY()] = piece.getId();
+            }
+            System.out.println("tab update");
+        }
+    }
+
 }

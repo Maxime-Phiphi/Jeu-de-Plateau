@@ -3,8 +3,10 @@ package mvc.libInterpreteurExpr;
 import mvc.rushHour.modele.RushPiece;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public abstract class Piece {
+public abstract class Piece extends Observable {
 
         private int id;
         private ArrayList<Piece> tabPiece;
@@ -17,7 +19,6 @@ public abstract class Piece {
     public abstract void avancer();
 
     public abstract void reculer();
-
 
 
 //Getter Setter
