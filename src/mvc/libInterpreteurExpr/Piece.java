@@ -1,29 +1,41 @@
 package mvc.libInterpreteurExpr;
 
-import mvc.rushHour.modele.RushPiece;
-
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 public abstract class Piece extends Observable {
 
-        private int id;
-        private ArrayList<Piece> tabPiece;
-        private int x;
-        private int y;
+    /**
+     * field id : color of piece
+     */
+    private int id;
+    /**
+     * field x : coordinates x
+     */
+    private int x;
+    /**
+     * fiels y : coordinates y
+     */
+    private int y;
 
-
+    /**
+     * Check if the piece is include in these coordinates
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @return boolean
+     */
     public abstract boolean isInclude (int x, int y);
 
+    /**
+     * move the piece forward
+     */
     public abstract void avancer();
 
+    /**
+     * Move the piece backward
+     */
     public abstract void reculer();
 
-
-//Getter Setter
-
-
+    //Getter Setter
     public int getId() {
         return id;
     }
@@ -32,19 +44,11 @@ public abstract class Piece extends Observable {
         this.id = id;
     }
 
-    public ArrayList<Piece> getTabPiece() {
-        return tabPiece;
-    }
-
-    public void setTabPiece(ArrayList<Piece> tabPiece) {
-        this.tabPiece = tabPiece;
-    }
-
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    protected void setX(int x) {
         this.x = x;
     }
 
@@ -52,7 +56,7 @@ public abstract class Piece extends Observable {
         return y;
     }
 
-    public void setY(int y) {
+    protected void setY(int y) {
         this.y = y;
     }
 }

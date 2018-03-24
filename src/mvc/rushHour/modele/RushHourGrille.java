@@ -1,81 +1,54 @@
 package mvc.rushHour.modele;
 
-
-import mvc.rushHour.modele.RushPiece;
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Random;
 import mvc.libInterpreteurExpr.*;
-
 
 public class RushHourGrille extends Grille{
 
-	private int largeur;
-	private int hauteur;
-	private int[][] tabCases;
-	private ArrayList<RushPiece> listPiece = new ArrayList<RushPiece>();
-
 	public RushHourGrille(int h, int l) {
-		this.largeur = l; 
-		this.hauteur = h;
-		tabCases = new int[h][l];
+		setLargeur(l);
+		setHauteur(h);
+		setTabCases(new int[h][l]);
 		initialiserConfigRushHour();
 		initialiserTabCases();
 		addPiece();
 	}
 
+	private void initialiserConfigRushHour() {
+	    getListPiece().add(new RushPiece("V", 1, 0, 0, 'H'));
+	    getListPiece().add(new RushPiece("V", 100, 1, 2, 'H'));
+	    getListPiece().add(new RushPiece("V", 2, 4, 4, 'H'));
+	    getListPiece().add(new RushPiece("V", 3, 0, 4, 'V'));
+	    getListPiece().add(new RushPiece("C", 4, 0, 1, 'V'));
+	    getListPiece().add(new RushPiece("C", 5, 3, 1, 'V'));
+	    getListPiece().add(new RushPiece("C", 6, 5, 0, 'V'));
+	    getListPiece().add(new RushPiece("C", 6, 2, 5, 'H'));
 
-	public void initialiserConfigRushHour() {
-		RushPiece v1 = new RushPiece("V", 1, 0, 0, 'H');
-		v1.addObserver(this);
-		listPiece.add(v1);
-		RushPiece vR = new RushPiece("V", 100, 1, 2, 'H');
-		listPiece.add(vR);
-        v1.addObserver(this);
-        RushPiece v2 = new RushPiece("V", 2, 4, 4, 'H');
-		listPiece.add(v2);
-        v1.addObserver(this);
-        RushPiece v3 = new RushPiece("V", 3, 0, 4, 'V');
-		listPiece.add(v3);
-        v1.addObserver(this);
-        RushPiece c4 = new RushPiece("C", 4, 0, 1, 'V');
-		listPiece.add(c4);
-        v1.addObserver(this);
-        RushPiece c5 = new RushPiece("C", 5, 3, 1, 'V');
-		listPiece.add(c5);
-        v1.addObserver(this);
-        RushPiece c6 = new RushPiece("C", 6, 5, 0, 'V');
-		listPiece.add(c6);
-        v1.addObserver(this);
-        RushPiece c7 = new RushPiece("C", 6, 2, 5, 'H');
-		listPiece.add(c7);
-        v1.addObserver(this);
+        for (Piece p : getListPiece()) {
+            p.addObserver(this);
+        }
     }
 
 	public void addPiece() {
-		for(RushPiece p : listPiece) {
-			if(p.getSens()=='V') {
-				tabCases[p.getX()][p.getY()]=p.getId();
-				tabCases[p.getX()+1][p.getY()]=p.getId();
-				if(p.getType()=="C") {
-					tabCases[p.getX()+2][p.getY()]=p.getId();
+		for(Piece p : getListPiece()) {
+			if(( (RushPiece) p).getSens()=='V') {
+				getTabCases()[p.getX()][p.getY()]=p.getId();
+                getTabCases()[p.getX()+1][p.getY()]=p.getId();
+				if(( (RushPiece) p).getType().equals("C")) {
+                    getTabCases()[p.getX()+2][p.getY()]=p.getId();
 				}
 			}else {
-				tabCases[p.getX()][p.getY()]=p.getId();
-				tabCases[p.getX()][p.getY()+1]=p.getId();
-				if(p.getType()=="C") {
-					tabCases[p.getX()][p.getY()+2]=p.getId();
-				
-				
-			}
-		}
+                getTabCases()[p.getX()][p.getY()]=p.getId();
+                getTabCases()[p.getX()][p.getY()+1]=p.getId();
+				if(( (RushPiece) p).getType().equals("C")) {
+                    getTabCases()[p.getX()][p.getY()+2]=p.getId();
+				}
+            }
+        }
 	}
-	}
-
-
 
     public boolean gagnePartie() {
-		for(RushPiece p: listPiece) {
+		for(Piece p: getListPiece()) {
 			if(p.getId()==100) {
 				if(p.getY()==4) {
 					return true; 
@@ -85,35 +58,20 @@ public class RushHourGrille extends Grille{
 		return false; 
 	}
 
-
 	public RushPiece getPieceAt (int x, int y){
 
-        for (RushPiece piece : listPiece) {
+        for (Piece piece : getListPiece()) {
             if (piece.isInclude(x,y)){
-                return piece;
+                return (RushPiece) piece;
             }
         }
        return null;
     }
 
-    public boolean collision(int x, int y) {
-        return super.collision(x, y, this.getTabCases());
-    }
-
-    public int[][] getTabCases() {
-        return tabCases;
-    }
-
     @Override
     public void update(Observable obs, Object obj) {
-        System.out.println("caca");
-        if(obs instanceof Piece){
-            initialiserTabCases();
-            for (Piece piece : listPiece) {
-                tabCases[piece.getX()][piece.getY()] = piece.getId();
-            }
-            System.out.println("tab update");
-        }
+        initialiserTabCases();
+        addPiece();
     }
 
 }

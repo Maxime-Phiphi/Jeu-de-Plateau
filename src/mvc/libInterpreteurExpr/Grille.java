@@ -1,21 +1,47 @@
 package mvc.libInterpreteurExpr;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Observer;
 
 public abstract class Grille implements Observer {
+    /**
+     * field largeur : width of the grid
+     */
     private int largeur;
+
+    /**
+     * field hauteur : height of the grid
+     */
     private int hauteur;
+
+    /**
+     * field tabCases : representation of the pieces on the grid filled by ids
+     */
     private int[][] tabCases;
+
+    /**
+     * field listPiece : list of pieces
+     */
     private ArrayList<Piece> listPiece = new ArrayList<>();
 
+    /**
+     * fill the tabCases with listPiece
+     */
     public abstract void addPiece();
 
-    public boolean collision(int x, int y, int[][]tabCases) {
-        return tabCases[x][y] != 0;
+    /**
+     * Check if the target case is empty
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @return Boolean
+     */
+    public boolean collision(int x, int y) {
+        return tabCases[x][y] == 0;
     }
 
-    public void initialiserTabCases() {
+    /**
+     * fill tabCases with zeros
+     */
+    protected void initialiserTabCases() {
         for(int i=0;i<largeur;i++) {
             for(int j=0;j<hauteur;j++) {
                 tabCases[j][i]=0;
@@ -23,23 +49,42 @@ public abstract class Grille implements Observer {
         }
     }
 
-//    public void updateGrille() {
-//        setChanged();
-//        notifyObservers();
-//    }
-
-//    public void changeCase(int x, int y, int n) {
-//        tabCases[x][y]=n;
-//        updateGrille();
-//    }
-
-    public int getCase(int x, int y) {
-        return tabCases[x][y];
+    //TODO A supprimer !!!
+    public void printGrille(){
+        for (int i = 0; i < getLargeur() ; i++){
+            for (int j = 0; j < getHauteur(); j++) {
+                System.out.print(getTabCases()[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 
+    //getters setters
+    protected int[][] getTabCases() {
+        return tabCases;
+    }
 
-    public boolean isEmpty(int x, int y) {
-        if(tabCases[x][y]!=0) return false;
-        return true;
+    protected void setTabCases(int[][] tabCases) {
+        this.tabCases = tabCases;
+    }
+
+    private int getLargeur() {
+        return largeur;
+    }
+
+    protected void setLargeur(int largeur) {
+        this.largeur = largeur;
+    }
+
+    private int getHauteur() {
+        return hauteur;
+    }
+
+    protected void setHauteur(int hauteur) {
+        this.hauteur = hauteur;
+    }
+
+    protected ArrayList<Piece> getListPiece() {
+        return listPiece;
     }
 }

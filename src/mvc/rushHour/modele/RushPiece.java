@@ -7,25 +7,17 @@ public class RushPiece extends Piece{
     private String type;
     private char sens;
 
-
-    public RushPiece(String type, int id, int y, int x, char sens) {
-
+    RushPiece(String type, int id, int y, int x, char sens) {
         this.type = type;
         setId(id);
         setX(x);
         setY(y);
         this.sens = sens;
-//        if (type=="V"){
-//            int[] tabPiece = {id, id};
-//        }
-//        else {
-//            int[] tabPiece = {id, id, id};
-//        }
     }
 
     public boolean isInclude (int x, int y){
         if (this.sens == 'V'){
-            if (this.type == "V") {
+            if (this.type.equals("V")) {
                 return (this.getX() == x || this.getX() + 1 == x )&& this.getY()==y;
             }
             else {
@@ -33,7 +25,7 @@ public class RushPiece extends Piece{
             }
         }
         else{
-            if (this.type == "V") {
+            if (this.type.equals("V")) {
                 return (this.getY() == y || this.getY() + 1 == y)&& this.getX()==x;
             }
             else {
@@ -43,17 +35,17 @@ public class RushPiece extends Piece{
         }
     }
 
-    public int mostClose (int x, int column, int row){
+    public int mostClose (int coord, int column, int row){
         if ( this.sens == 'V'){
-            if (this.getX() > x){
-                for (int i = x; i < row ; i++) {
+            if (this.getX() > coord){
+                for (int i = coord; i < row ; i++) {
                     if(isInclude(i, this.getY())){
                         return i;
                     }
                 }
             }
             else {
-                for (int i = x; i > 0 ; i--) {
+                for (int i = coord; i > 0 ; i--) {
                     if(isInclude(i, this.getY())){
                         return i;
                     }
@@ -62,15 +54,15 @@ public class RushPiece extends Piece{
             return this.getX();
         }
         else {
-            if (this.getY() > x){
-                for (int i = x; i < column ; i++) {
+            if (this.getY() > coord){
+                for (int i = coord; i < column ; i++) {
                     if(isInclude(this.getX(), i)){
                         return i;
                     }
                 }
             }
             else {
-                for (int i = x; i > 0 ; i--) {
+                for (int i = coord; i > 0 ; i--) {
                     if(isInclude(this.getX(), i)){
                         return i;
                     }
