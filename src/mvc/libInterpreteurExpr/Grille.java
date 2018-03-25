@@ -49,6 +49,16 @@ public abstract class Grille implements Observer {
         }
     }
 
+    public Piece getPieceAt (int x, int y){
+
+        for (Piece piece : getListPiece()) {
+            if (piece.isInclude(x,y)){
+                return piece;
+            }
+        }
+        return null;
+    }
+
     //TODO A supprimer !!!
     public void printGrille(){
         for (int i = 0; i < getLargeur() ; i++){
@@ -58,6 +68,8 @@ public abstract class Grille implements Observer {
             System.out.print("\n");
         }
     }
+
+
 
     //getters setters
     protected int[][] getTabCases() {

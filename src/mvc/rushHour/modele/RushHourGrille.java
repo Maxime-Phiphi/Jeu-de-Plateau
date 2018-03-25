@@ -58,15 +58,7 @@ public class RushHourGrille extends Grille{
 		return false; 
 	}
 
-	public RushPiece getPieceAt (int x, int y){
 
-        for (Piece piece : getListPiece()) {
-            if (piece.isInclude(x,y)){
-                return (RushPiece) piece;
-            }
-        }
-       return null;
-    }
 
     @Override
     public void update(Observable obs, Object obj) {
