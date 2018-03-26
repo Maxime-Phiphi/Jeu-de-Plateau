@@ -25,6 +25,15 @@ public class BlockusVueControleur extends VueControleur {
     private int cpsB;
     private int cpsV; 
     private int cpsJ;
+    private int pieceFinalR; 
+    private int pieceFinalB;
+    private int pieceFinalV; 
+    private int pieceFinalJ;
+    private boolean loseR=true;
+    private boolean loseB=true;
+    private boolean loseV=true;
+    private boolean loseJ=true;
+    
 
     @Override
     public void initVars() {
@@ -163,13 +172,17 @@ public class BlockusVueControleur extends VueControleur {
         cpsB=0;
         cpsV=0; 
         cpsJ=0;
+        pieceFinalR=0;
+        pieceFinalB=0;
+        pieceFinalV=0;
+        pieceFinalJ=0;
+        loseR=true;
+        loseB=true;
+        loseV=true;
+        loseJ=true;
         
     	ArrayList<Piece> lp = g.getListPiece();
     	for(Piece p: lp) {
-    		int coordX = p.getX();
-    		int coordY = p.getY();
-    		try {
-    		if(g.getTabCases()[coordX-1][coordY-1]==0&&g.getTabCases()[coordX+2][coordY+2]==0&&g.getTabCases()[coordX+2][coordY-1]==0&&g.getTabCases()[coordX-1][coordY+2]==0) {
     		switch(p.getId()){
     		case 100:
     			cpsR++;
@@ -185,14 +198,56 @@ public class BlockusVueControleur extends VueControleur {
     			break;
     			
     		}
+    		int coordX = p.getX();
+    		int coordY = p.getY();
+    		try {
+    		if(g.getTabCases()[coordX-1][coordY-1]==0||g.getTabCases()[coordX+2][coordY+2]==0||g.getTabCases()[coordX-1][coordY+2]==0||g.getTabCases()[coordX+2][coordY-1]==0) {
+    		switch(p.getId()){
+    		case 100:
+    			pieceFinalR++;
+    			loseR=false; 
+    			break;
+    		case 1:
+    			loseB=false;
+    			pieceFinalB++;
+    			break;
+    		case 2: 
+    			loseV=false;
+    			pieceFinalV++;
+    			break;
+    		case 3:
+    			pieceFinalJ++;
+    			loseJ=false;
+    			break;
+    			
     		}
+    		}
+
+    		
     		}catch(Exception e) {
     			
     		}
+    		
+
     	}
-    	System.out.println(cpsR);
-    	if(cpsR==0)
-    		System.out.println("Fin partie R");
+    	String perdant; 
+    	String content = "Fin de la partie";
+        
+    	if(loseR) {
+    		perdant = "rouge";
+    	}
+    	if(loseB) {
+    		perdant = "bleu";
+    		
+    	}
+    	if(loseV) {
+    		perdant = "vert";
+    	}
+    	if(loseJ) {
+    		perdant = "jaune";
+    	}
+
+    	Utils.showDialog("Bouh","Le joueur " + couleur + " a perdu en premier",content,true);
     }
 
 

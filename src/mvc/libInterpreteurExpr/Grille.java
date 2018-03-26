@@ -68,12 +68,9 @@ public abstract class Grille implements Observer {
 
 
     //getters setters
-<<<<<<< HEAD
-    public int[][] getTabCases() {
-=======
 
-    protected int[][] getTabCases() {
->>>>>>> 3cd8a7691f373b42feaaa7c2ca095dab57fde6d5
+    public int[][] getTabCases() {
+
         return tabCases;
     }
 
