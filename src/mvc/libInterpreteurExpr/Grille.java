@@ -49,6 +49,12 @@ public abstract class Grille implements Observer {
         }
     }
 
+    /**
+     * Return the Piece at coordinates x et y
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @return null|Piece
+     */
     public Piece getPieceAt (int x, int y){
 
         for (Piece piece : getListPiece()) {
@@ -59,19 +65,10 @@ public abstract class Grille implements Observer {
         return null;
     }
 
-    //TODO A supprimer !!!
-    public void printGrille(){
-        for (int i = 0; i < getLargeur() ; i++){
-            for (int j = 0; j < getHauteur(); j++) {
-                System.out.print(getTabCases()[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
-    }
-
 
 
     //getters setters
+
     protected int[][] getTabCases() {
         return tabCases;
     }

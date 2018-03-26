@@ -26,7 +26,6 @@ public class RushHourVueControleur extends VueControleur{
     public void start(Stage primaryStage) {
         super.start(primaryStage);
         initVars();
-        g = new RushHourGrille(column, row);
         paintGrille(column, row, gPane);
 
 
@@ -64,7 +63,7 @@ public class RushHourVueControleur extends VueControleur{
 
 
     
-    private void finPartie() {
+    public void finPartie() {
         String content = "Tu as fini la partie en " + nbCoups + " coups.";
         Utils.showDialog("Bravo","Tu as gagne la partie",content,true);
     }

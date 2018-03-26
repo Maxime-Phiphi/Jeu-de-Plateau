@@ -11,7 +11,7 @@ public class RushHourGrille extends Grille{
 		setTabCases(new int[h][l]);
 		initialiserConfigRushHour();
 		initialiserTabCases();
-		addPiece();
+		addInTabCases();
 	}
 
 	private void initialiserConfigRushHour() {
@@ -29,7 +29,7 @@ public class RushHourGrille extends Grille{
         }
     }
 
-	public void addPiece() {
+	public void addInTabCases() {
 		for(Piece p : getListPiece()) {
 			if(( (RushPiece) p).getSens()=='V') {
 				getTabCases()[p.getX()][p.getY()]=p.getId();
@@ -63,7 +63,7 @@ public class RushHourGrille extends Grille{
     @Override
     public void update(Observable obs, Object obj) {
         initialiserTabCases();
-        addPiece();
+        addInTabCases();
     }
 
 }

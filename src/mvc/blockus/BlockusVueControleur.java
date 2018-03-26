@@ -36,7 +36,7 @@ public class BlockusVueControleur extends VueControleur {
         nbPieceBleue = 1;
         nbPieceVerte = 1;
         nbPieceJaune = 1;
-        nbMaxPiece = 3;
+        nbMaxPiece = 21;
         error = false;
     }
 
