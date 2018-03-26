@@ -45,12 +45,12 @@ public class BlockusGrille extends Grille {
 
     public boolean isAllowed (BlockusPiece newPiece, BlockusPiece piece){
         ArrayList<int[]> listNeighbors = piece.neighborsPlaces();
-        for (int [] place : listNeighbors) {
-            for (int [] coord : newPiece.listCoords()) {
-                if (place[0] == coord[0] && place[1] == coord[1] && newPiece.getId() == piece.getId()){
-                    return true;
+            for (int[] place : listNeighbors) {
+                for (int[] coord : newPiece.listCoords()) {
+                    if (place[0] == coord[0] && place[1] == coord[1] && newPiece.getId() == piece.getId()) {
+                        return true;
+                    }
                 }
-            }
         }
         return false;
     }
