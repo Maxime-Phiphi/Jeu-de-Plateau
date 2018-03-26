@@ -16,7 +16,7 @@ public abstract class Grille implements Observer {
     /**
      * field tabCases : representation of the pieces on the grid filled by ids
      */
-    private int[][] tabCases;
+    protected int[][] tabCases;
 
     /**
      * field listPiece : list of pieces
@@ -72,7 +72,7 @@ public abstract class Grille implements Observer {
 
 
     //getters setters
-    protected int[][] getTabCases() {
+    public int[][] getTabCases() {
         return tabCases;
     }
 

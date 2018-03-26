@@ -40,6 +40,8 @@ public class BlockusGrille extends Grille {
         getListPiece().add(new PieceO(getHauteur()-2,0,3));
 
     }
+    
+
 
     public boolean isAllowed (BlockusPiece newPiece, BlockusPiece piece){
         ArrayList<int[]> listNeighbors = piece.neighborsPlaces();
@@ -65,7 +67,7 @@ public class BlockusGrille extends Grille {
         return false;
     }
 
-
+    
 
 
     @Override

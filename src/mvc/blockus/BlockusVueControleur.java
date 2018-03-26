@@ -21,6 +21,10 @@ public class BlockusVueControleur extends VueControleur {
     private String couleur;
     private int nbMaxPiece;
     boolean error;
+    private int cpsR; 
+    private int cpsB;
+    private int cpsV; 
+    private int cpsJ;
 
     @Override
     public void initVars() {
@@ -36,7 +40,7 @@ public class BlockusVueControleur extends VueControleur {
         nbPieceBleue = 1;
         nbPieceVerte = 1;
         nbPieceJaune = 1;
-        nbMaxPiece = 3;
+        nbMaxPiece = 21;
         error = false;
     }
 
@@ -51,7 +55,7 @@ public class BlockusVueControleur extends VueControleur {
             int coordX = (int) event.getY() / 40;
             int currentColor = colors.get(0);
             Piece piece =  new PieceO(coordX, coordY, currentColor);
-
+            checkFinPartie();
             if (g.getListPiece().isEmpty()){
                 ((BlockusGrille) g).addPiece(coordX, coordY, piece);
                 paintGrille(column, row, gPane);
@@ -145,6 +149,50 @@ public class BlockusVueControleur extends VueControleur {
         }
         String content = "Tu as pose toutes tes pieces sur la tablier";
         Utils.showDialog("Bravo","Le joueur " + couleur + " a gagne la partie",content,true);
+    }
+    
+    public void checkFinPartie() {
+    	/*System.out.println(g.getTabCases().length);
+    	for(int i=0;i<g.getTabCases().length;i++) {
+    		for(int j=0;j<g.getTabCases().length;j++) {
+    			System.out.print(g.getTabCases()[i][j]);
+    		}
+    		System.out.println(".");
+    	}*/
+        cpsR=0; 
+        cpsB=0;
+        cpsV=0; 
+        cpsJ=0;
+        
+    	ArrayList<Piece> lp = g.getListPiece();
+    	for(Piece p: lp) {
+    		int coordX = p.getX();
+    		int coordY = p.getY();
+    		try {
+    		if(g.getTabCases()[coordX-1][coordY-1]==0&&g.getTabCases()[coordX+2][coordY+2]==0&&g.getTabCases()[coordX+2][coordY-1]==0&&g.getTabCases()[coordX-1][coordY+2]==0) {
+    		switch(p.getId()){
+    		case 100:
+    			cpsR++;
+    			break;
+    		case 1:
+    			cpsB++;
+    			break;
+    		case 2: 
+    			cpsV++;
+    			break;
+    		case 3:
+    			cpsJ++;
+    			break;
+    			
+    		}
+    		}
+    		}catch(Exception e) {
+    			
+    		}
+    	}
+    	System.out.println(cpsR);
+    	if(cpsR==0)
+    		System.out.println("Fin partie R");
     }
 
 
