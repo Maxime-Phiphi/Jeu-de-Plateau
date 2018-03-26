@@ -9,8 +9,17 @@ import mvc.rushHour.modele.RushPiece;
 
 public class RushHourVueControleur extends VueControleur{
 
+    /**
+     * field currentPiece : actual piece
+     */
     private RushPiece currentPiece = null;
+    /**
+     * field previous : previous piece
+     */
     private int previous;
+    /**
+     * field nbCoups : number of turns
+     */
     private int nbCoups=0;
 
 
@@ -27,7 +36,6 @@ public class RushHourVueControleur extends VueControleur{
         super.start(primaryStage);
         initVars();
         paintGrille(column, row, gPane);
-
 
         super.gPane.setOnMouseClicked(event->{
             int coordY = (int) (event.getX() / 40);
@@ -62,12 +70,20 @@ public class RushHourVueControleur extends VueControleur{
     }
 
 
-    
+    /**
+     * display a message box for the end of the game
+     */
     public void finPartie() {
         String content = "Tu as fini la partie en " + nbCoups + " coups.";
         Utils.showDialog("Bravo","Tu as gagne la partie",content,true);
     }
 
+    /**
+     * make the piece move
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @param currentPiece : actual piece
+     */
     private void avancer(int x, int y, RushPiece currentPiece){
         if (currentPiece.getSens()=='V'){
             if (currentPiece.getX() > x && y == currentPiece.getY()){
@@ -127,11 +143,5 @@ public class RushHourVueControleur extends VueControleur{
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 }

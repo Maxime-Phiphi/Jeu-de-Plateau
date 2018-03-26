@@ -4,7 +4,11 @@ import java.util.Observable;
 import mvc.libInterpreteurExpr.*;
 
 public class RushHourGrille extends Grille{
-
+	/**
+	 * constructor of grid of rush hour game
+	 * @param h : height of the grid
+	 * @param l : width of the grid
+	 */
 	public RushHourGrille(int h, int l) {
 		setLargeur(l);
 		setHauteur(h);
@@ -14,6 +18,9 @@ public class RushHourGrille extends Grille{
 		addInTabCases();
 	}
 
+	/**
+	 * Initialization of the game
+	 */
 	private void initialiserConfigRushHour() {
 	    getListPiece().add(new RushPiece("V", 1, 0, 0, 'H'));
 	    getListPiece().add(new RushPiece("V", 100, 1, 2, 'H'));
@@ -29,6 +36,9 @@ public class RushHourGrille extends Grille{
         }
     }
 
+	/**
+	 * Add a piece in tabCase
+	 */
 	public void addInTabCases() {
 		for(Piece p : getListPiece()) {
 			if(( (RushPiece) p).getSens()=='V') {
@@ -47,6 +57,10 @@ public class RushHourGrille extends Grille{
         }
 	}
 
+	/**
+	 * Check if the game is winning
+	 * @return boolean
+	 */
     public boolean gagnePartie() {
 		for(Piece p: getListPiece()) {
 			if(p.getId()==100) {
@@ -59,7 +73,11 @@ public class RushHourGrille extends Grille{
 	}
 
 
-
+	/**
+	 * function called each time a child notify
+	 * @param obs : observable child
+	 * @param obj : any
+	 */
     @Override
     public void update(Observable obs, Object obj) {
         initialiserTabCases();
