@@ -7,15 +7,15 @@ public abstract class Piece extends Observable {
     /**
      * field id : color of piece
      */
-    private int id;
+    protected int id;
     /**
      * field x : coordinates x
      */
-    private int x;
+    protected int x;
     /**
      * fiels y : coordinates y
      */
-    private int y;
+    protected int y;
 
     /**
      * Check if the piece is include in these coordinates
@@ -24,16 +24,6 @@ public abstract class Piece extends Observable {
      * @return boolean
      */
     public abstract boolean isInclude (int x, int y);
-
-    /**
-     * move the piece forward
-     */
-    public abstract void avancer();
-
-    /**
-     * Move the piece backward
-     */
-    public abstract void reculer();
 
     //Getter Setter
     public int getId() {
@@ -48,7 +38,7 @@ public abstract class Piece extends Observable {
         return x;
     }
 
-    protected void setX(int x) {
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -56,7 +46,8 @@ public abstract class Piece extends Observable {
         return y;
     }
 
-    protected void setY(int y) {
+    public void setY(int y) {
         this.y = y;
     }
+
 }

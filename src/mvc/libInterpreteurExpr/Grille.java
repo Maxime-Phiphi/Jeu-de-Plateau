@@ -26,7 +26,7 @@ public abstract class Grille implements Observer {
     /**
      * fill the tabCases with listPiece
      */
-    public abstract void addPiece();
+    public abstract void addInTabCases();
 
     /**
      * Check if the target case is empty
@@ -80,7 +80,7 @@ public abstract class Grille implements Observer {
         this.tabCases = tabCases;
     }
 
-    private int getLargeur() {
+    protected int getLargeur() {
         return largeur;
     }
 
@@ -88,7 +88,7 @@ public abstract class Grille implements Observer {
         this.largeur = largeur;
     }
 
-    private int getHauteur() {
+    protected int getHauteur() {
         return hauteur;
     }
 
@@ -96,7 +96,7 @@ public abstract class Grille implements Observer {
         this.hauteur = hauteur;
     }
 
-    protected ArrayList<Piece> getListPiece() {
+    public ArrayList<Piece> getListPiece() {
         return listPiece;
     }
 }

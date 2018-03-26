@@ -67,4 +67,6 @@ public abstract class VueControleur extends Application {
         }
         return null;
     }
+
+    public abstract void finPartie();
 }
