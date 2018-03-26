@@ -10,15 +10,36 @@ import javafx.stage.Stage;
 
 public abstract class VueControleur extends Application {
 
+    /**
+     * field tabRect : table of rectangles contained in the grid
+     */
     protected Rectangle[][] tabRect;
+    /**
+     * field column : number of column in the grid
+     */
     protected int column;
+    /**
+     * field row : number of row in the grid
+     */
     protected int row;
+    /**
+     * field g : Grid of the game
+     */
     protected Grille g;
+    /**
+     * field gPane : container of the game
+     */
     protected GridPane gPane;
 
-
+    /**
+     * initialization of fields
+     */
     public abstract void initVars();
 
+    /**
+     * method called at the begining of the game
+     * @param stage Stage
+     */
     @Override
     public void start(Stage stage) {
         BorderPane border = new BorderPane();
@@ -30,6 +51,12 @@ public abstract class VueControleur extends Application {
 
     }
 
+    /**
+     * paint the grid in the window
+     * @param column : number of column
+     * @param row : number of row
+     * @param gPane : container of the grid
+     */
     protected void paintGrille(int column, int row, GridPane gPane){
         for (int i = 0; i < column; i++) {
             for (int j = 0; j < row; j++) {
@@ -46,6 +73,11 @@ public abstract class VueControleur extends Application {
         }
     }
 
+    /**
+     * return the color oh the piece
+     * @param id : number of the color
+     * @return null|Color
+     */
     private Color getColor(int id) {
         switch (id) {
             case 100:
@@ -68,5 +100,8 @@ public abstract class VueControleur extends Application {
         return null;
     }
 
+    /**
+     * Check to finish the game
+     */
     public abstract void finPartie();
 }

@@ -4,9 +4,23 @@ import mvc.libInterpreteurExpr.Piece;
 
 public class RushPiece extends Piece{
 
+    /**
+     * field type : type of the piece
+     */
     private String type;
+    /**
+     * field sens : direction of the piece
+     */
     private char sens;
 
+    /**
+     * constructor of a piece of the game
+     * @param type : type of the piece
+     * @param id : number of color of the piece
+     * @param y : coordinate y
+     * @param x : coordinate x
+     * @param sens : direction of the piece
+     */
     RushPiece(String type, int id, int y, int x, char sens) {
         this.type = type;
         setId(id);
@@ -15,6 +29,12 @@ public class RushPiece extends Piece{
         this.sens = sens;
     }
 
+    /**
+     * check if coordinate are inclued in the piece
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @return boolean
+     */
     public boolean isInclude (int x, int y){
         if (this.sens == 'V'){
             if (this.type.equals("V")) {
@@ -35,6 +55,13 @@ public class RushPiece extends Piece{
         }
     }
 
+    /**
+     * return the coordinate of the most close part of the piece
+     * @param coord : x or y coordinate
+     * @param column : number of columns in the grid
+     * @param row : number of rows in the grid
+     * @return Integer
+     */
     public int mostClose (int coord, int column, int row){
         if ( this.sens == 'V'){
             if (this.getX() > coord){
@@ -73,6 +100,9 @@ public class RushPiece extends Piece{
 
     }
 
+    /**
+     * make the piece move forward
+     */
     public void avancer(){
 
         if (this.getSens() =='V'){
@@ -85,6 +115,9 @@ public class RushPiece extends Piece{
         notifyObservers();
     }
 
+    /**
+     * make the piece move backward
+     */
     public void reculer(){
         if (this.getSens() =='V'){
             this.setX(this.getX()-1);
@@ -95,8 +128,9 @@ public class RushPiece extends Piece{
         setChanged();
         notifyObservers();
     }
-    // Getters Setters
 
+
+    // Getters Setters
 
     public String getType() {
         return type;
