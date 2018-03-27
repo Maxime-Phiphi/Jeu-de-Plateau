@@ -98,6 +98,23 @@ oo     * @return boolean
         return false;
     }
 
+    public boolean possibilities ( BlockusPiece newPiece, int id){
+        for (Piece p : getListPiece()) {
+            if (p.getId() == id){
+                for (int i = 0; i < tabCases.length ; i++) {
+                    for (int j = 0; j <tabCases.length ; j++) {
+                        if (isAllowed(newPiece, (BlockusPiece) p)){
+                            return true;
+                        }
+                    }
+
+                }
+            }
+
+        }
+        return false;
+    }
+
     
 
     @Override

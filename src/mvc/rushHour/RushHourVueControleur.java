@@ -64,7 +64,7 @@ public class RushHourVueControleur extends VueControleur{
 
 
     
-    private void finPartie() {
+    public void finPartie() {
         String content = "Tu as fini la partie en " + nbCoups + " coups.";
         Utils.showDialog("Bravo","Tu as gagne la partie",content,true);
     }

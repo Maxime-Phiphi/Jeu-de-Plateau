@@ -26,6 +26,7 @@ public abstract class Piece extends Observable {
     public abstract boolean isInclude (int x, int y);
 
     //Getter Setter
+
     public int getId() {
         return id;
     }

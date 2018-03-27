@@ -9,7 +9,7 @@ public abstract class BlockusPiece extends Piece{
     /**
      * field tabPiece : table which contain all the piece
      */
-    protected int[][] tabPiece;
+    int[][] tabPiece;
 
     /**
      * rotatation of the Piece
