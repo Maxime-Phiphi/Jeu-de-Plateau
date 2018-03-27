@@ -59,6 +59,8 @@ public class BlockusGrille extends Grille {
         getListPiece().add(new PieceO(getHauteur()-2,0,3));
 
     }
+    
+
 
     /**
      * check if the piece can be there
@@ -96,7 +98,7 @@ oo     * @return boolean
         return false;
     }
 
-
+    
 
     @Override
     public void addInTabCases() {
