@@ -6,6 +6,12 @@ public class PieceO extends BlockusPiece{
 
 // x, y sont les coordonnées du coin en haut à gauche
 
+    /**
+     * constructor of PieceO
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @param id : number of the color of the PieceO
+     */
     public PieceO(int x, int y, int id) {
         this.id = id;
         tabPiece = new int[][] {

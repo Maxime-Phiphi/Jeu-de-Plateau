@@ -1,13 +1,16 @@
 package mvc.blockus.modele;
-
 import mvc.libInterpreteurExpr.Grille;
 import mvc.libInterpreteurExpr.Piece;
-
 import java.util.ArrayList;
 import java.util.Observable;
 
 public class BlockusGrille extends Grille {
 
+    /**
+     * constructor of the grid
+     * @param column : number of columns in the grid
+     * @param row : nulber of rows in the grid
+     */
     public BlockusGrille(int column , int row) {
         setLargeur(column);
         setHauteur(row);
@@ -16,6 +19,12 @@ public class BlockusGrille extends Grille {
         initialiserConfigBlockus();
     }
 
+    /**
+     * add a piece in the grid
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @param piece : Piece of the game
+     */
     public void addPiece(int x, int y, Piece piece) {
         piece.setX(x);
         piece.setY(y);
@@ -23,6 +32,13 @@ public class BlockusGrille extends Grille {
         addInTabCases();
     }
 
+    /**
+     * check if there isn't another piece there
+     * @param x : coordinate x
+     * @param y : coordinate y
+     * @param piece : Piece
+     * @return boolean
+     */
     public boolean collision (int x, int y, BlockusPiece piece){
         for (int[] coords : piece.listCoords()) {
             if (!super.collision(coords[0], coords[1])){
@@ -33,6 +49,9 @@ public class BlockusGrille extends Grille {
         return true;
     }
 
+    /**
+     * initialization of the configuration of the game
+     */
     private void initialiserConfigBlockus() {
         getListPiece().add(new PieceO(0,0,100));
         getListPiece().add(new PieceO(0,getLargeur()-2,1));
@@ -41,6 +60,12 @@ public class BlockusGrille extends Grille {
 
     }
 
+    /**
+     * check if the piece can be there
+     * @param newPiece : Piece that we want to add
+     * @param piece : Piece of reference
+     * @return boolean
+     */
     public boolean isAllowed (BlockusPiece newPiece, BlockusPiece piece){
         ArrayList<int[]> listNeighbors = piece.neighborsPlaces();
             for (int[] place : listNeighbors) {
@@ -53,6 +78,12 @@ public class BlockusGrille extends Grille {
         return false;
     }
 
+    /**
+     * check if it's forbidden to put the piece there
+     * @param newPiece : Piece we want to add
+     * @param piece ! Piece of reference
+oo     * @return boolean
+     */
     public boolean isForbidden (BlockusPiece newPiece, BlockusPiece piece){
         ArrayList<int[]> listForbidden = piece.forbiddenPlaces();
         for (int [] place : listForbidden) {
@@ -64,7 +95,6 @@ public class BlockusGrille extends Grille {
         }
         return false;
     }
-
 
 
 

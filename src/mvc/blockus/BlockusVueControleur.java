@@ -13,14 +13,38 @@ import java.util.ArrayList;
 
 public class BlockusVueControleur extends VueControleur {
 
+    /**
+     * field colors : ArrayList<Integer> of possible colors
+     */
     private ArrayList<Integer> colors = new ArrayList<>();
+    /**
+     * field nbPieceRouge : number of red Piece on the grid
+     */
     private int nbPieceRouge;
+    /**
+     * field nbPieceBleue : number of blue Piece on the grid
+     */
     private int nbPieceBleue;
+    /**
+     * field nbPieceVerte : number of green Piece on the grid
+     */
     private int nbPieceVerte;
+    /**
+     * field nbPieceJaune : number of yellow Piece on the grid
+     */
     private int nbPieceJaune;
+    /**
+     * field couleur : Color
+     */
     private String couleur;
+    /**
+     * field nbMaxPiece : maximum number of piece per color on the grid
+     */
     private int nbMaxPiece;
-    boolean error;
+    /**
+     * field error : if there is an error with the placement on the grid
+     */
+    private boolean error;
 
     @Override
     public void initVars() {
@@ -118,7 +142,6 @@ public class BlockusVueControleur extends VueControleur {
             catch (Exception e){
                 String content = "Tu ne peux pas poser ta piece ici";
                 Utils.showDialog("Attention", "Mouvement interdit", content, false);
-                return;
             }
         });
 
@@ -146,6 +169,7 @@ public class BlockusVueControleur extends VueControleur {
         String content = "Tu as pose toutes tes pieces sur la tablier";
         Utils.showDialog("Bravo","Le joueur " + couleur + " a gagne la partie",content,true);
     }
+
 
 
 }
